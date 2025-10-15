@@ -11,4 +11,47 @@
     .productos { display:flex; flex-wrap:wrap; justify-content:center; padding:10px; }
     .producto { border:1px solid #f5c2d9; border-radius:15px; margin:15px; padding:10px; width:200px; background:#fff; box-shadow:2px 2px 8px rgba(0,0,0,0.1); transition:transform 0.2s; }
     .producto:hover { transform:scale(1.05); }
-    .producto img { width:180px; border-radius:
+    .producto img { width:180px; border-radius:10px; }
+    .producto h3 { font-size:1.1em; margin:10px 0 5px 0; }
+    .producto p { margin:5px 0; color:#ff1493; font-weight:bold; }
+    .producto button { margin-top:5px; padding:6px 12px; background:#ff69b4; color:#fff; border:none; border-radius:5px; font-weight:bold; cursor:pointer; }
+    footer { background:#ff69b4; color:#fff; padding:15px; margin-top:30px; }
+    footer a { color:white; text-decoration:underline; }
+
+    /* WhatsApp botón */
+    .whatsapp-button { position:fixed; bottom:25px; right:25px; background:#25d366; color:#fff; border-radius:50%; width:80px; height:80px; display:flex; justify-content:center; align-items:center; font-size:40px; text-decoration:none; box-shadow:0 8px 25px rgba(0,0,0,0.35); z-index:1000; transition: transform 0.3s; }
+    .whatsapp-button:hover { transform:scale(1.1); }
+
+    /* Carrito */
+    #cart { display:none; position:fixed; bottom:120px; right:20px; background:#fff; border:2px solid #ff69b4; border-radius:15px; padding:20px; width:320px; max-height:420px; overflow:auto; box-shadow:0 6px 20px rgba(0,0,0,0.3); z-index:1001; }
+    #cart h3 { margin-top:0; }
+    #cart ul { padding-left:16px; list-style:none; }
+    .cart-actions { display:flex; justify-content:space-between; margin-top:10px; gap:8px; }
+    .btn-primary { background:#ff69b4; color:#fff; padding:8px 12px; border-radius:8px; border:none; cursor:pointer; }
+    .btn-secondary { background:#25d366; color:#fff; padding:8px 12px; border-radius:8px; border:none; cursor:pointer; }
+    .cart-open { position:fixed; bottom:25px; right:115px; background:#ff1493; color:white; width:64px; height:64px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:28px; text-decoration:none; box-shadow:0 6px 20px rgba(0,0,0,0.3); z-index:1000; }
+  </style>
+</head>
+<body>
+  <header>✨ Esther Store ✨</header>
+
+  <div class="descripcion">
+    Tienda femenina de fundas, body splash, cremas, mallas y tops 💖<br>Accesorios coquetos y únicos para vos 🌸
+  </div>
+
+  <!-- Carrito -->
+  <div id="cart">
+    <h3>Carrito de Compras 🛒</h3>
+    <ul id="cart-items"></ul>
+    <p><strong>Total: $<span id="cart-total">0</span></strong></p>
+    <div class="cart-actions">
+      <button class="btn-primary" onclick="payWithCard()">Pagar con tarjeta</button>
+      <button class="btn-secondary" onclick="payWithWhatsApp()">Pagar por WhatsApp</button>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-top:10px;">
+      <button onclick="clearCart()" style="background:#ff69b4;color:#fff;border:none;padding:8px;border-radius:8px;cursor:pointer;">Vaciar carrito</button>
+      <button onclick="toggleCart()" style="background:#ccc;color:#333;border:none;padding:8px;border-radius:8px;cursor:pointer;">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Botón abrir carrito -->
