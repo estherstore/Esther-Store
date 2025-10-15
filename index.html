@@ -1,57 +1,135 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Esther Store 💋</title>
-  <style>
-    body { font-family:'Arial',sans-serif; background:#fff0f8; margin:0; padding:0; text-align:center; color:#444; }
-    header { background:#ff69b4; color:#fff; padding:25px 0; font-size:2em; font-weight:bold; }
-    .descripcion { margin:20px; font-size:1.1em; color:#555; }
-    .section-title { font-size:1.8em; color:#ff1493; margin-top:30px; }
-    .productos { display:flex; flex-wrap:wrap; justify-content:center; padding:10px; }
-    .producto { border:1px solid #f5c2d9; border-radius:15px; margin:15px; padding:10px; width:200px; background:#fff; box-shadow:2px 2px 8px rgba(0,0,0,0.1); transition:transform 0.2s; }
-    .producto:hover { transform:scale(1.05); }
-    .producto img { width:180px; border-radius:10px; }
-    .producto h3 { font-size:1.1em; margin:10px 0 5px 0; }
-    .producto p { margin:5px 0; color:#ff1493; font-weight:bold; }
-    .producto button { margin-top:5px; padding:6px 12px; background:#ff69b4; color:#fff; border:none; border-radius:5px; font-weight:bold; cursor:pointer; }
-    footer { background:#ff69b4; color:#fff; padding:15px; margin-top:30px; }
-    footer a { color:white; text-decoration:underline; }
+<!DOCTYPE html>  <html lang="es">  
+<head>  
+  <meta charset="UTF-8">  
+  <title>Esther Store 💋</title>  
+  <style>  
+    body { font-family:'Arial',sans-serif; background:#fff0f8; margin:0; padding:0; text-align:center; color:#444; }  
+    header { background:#ff69b4; color:#fff; padding:25px 0; font-size:2em; font-weight:bold; }  
+    .descripcion { margin:20px; font-size:1.1em; color:#555; }  
+    .section-title { font-size:1.8em; color:#ff1493; margin-top:30px; }  
+    .productos { display:flex; flex-wrap:wrap; justify-content:center; padding:10px; }  
+    .producto { border:1px solid #f5c2d9; border-radius:15px; margin:15px; padding:10px; width:200px; background:#fff; box-shadow:2px 2px 8px rgba(0,0,0,0.1); transition:transform 0.2s; }  
+    .producto:hover { transform:scale(1.05); }  
+    .producto img { width:180px; border-radius:10px; }  
+    .producto h3 { font-size:1.1em; margin:10px 0 5px 0; }  
+    .producto p { margin:5px 0; color:#ff1493; font-weight:bold; }  
+    .producto button { margin-top:5px; padding:6px 12px; background:#ff69b4; color:#fff; border:none; border-radius:5px; font-weight:bold; cursor:pointer; }  
+    footer { background:#ff69b4; color:#fff; padding:15px; margin-top:30px; }  
+    footer a { color:white; text-decoration:underline; }  /* WhatsApp botón */  
+.whatsapp-button { position:fixed; bottom:25px; right:25px; background:#25d366; color:#fff; border-radius:50%; width:80px; height:80px; display:flex; justify-content:center; align-items:center; font-size:40px; text-decoration:none; box-shadow:0 8px 25px rgba(0,0,0,0.35); z-index:1000; transition: transform 0.3s; }  
+.whatsapp-button:hover { transform:scale(1.1); }  
 
-    /* WhatsApp botón */
-    .whatsapp-button { position:fixed; bottom:25px; right:25px; background:#25d366; color:#fff; border-radius:50%; width:80px; height:80px; display:flex; justify-content:center; align-items:center; font-size:40px; text-decoration:none; box-shadow:0 8px 25px rgba(0,0,0,0.35); z-index:1000; transition: transform 0.3s; }
-    .whatsapp-button:hover { transform:scale(1.1); }
+/* Carrito */  
+#cart { display:none; position:fixed; bottom:120px; right:20px; background:#fff; border:2px solid #ff69b4; border-radius:15px; padding:20px; width:320px; max-height:420px; overflow:auto; box-shadow:0 6px 20px rgba(0,0,0,0.3); z-index:1001; }  
+#cart h3 { margin-top:0; }  
+#cart ul { padding-left:16px; }  
+.cart-actions { display:flex; justify-content:space-between; margin-top:10px; gap:8px; }  
+.btn-primary { background:#ff69b4; color:#fff; padding:8px 12px; border-radius:8px; border:none; cursor:pointer; }  
+.btn-secondary { background:#25d366; color:#fff; padding:8px 12px; border-radius:8px; border:none; cursor:pointer; }  
+.cart-open { position:fixed; bottom:25px; right:115px; background:#ff1493; color:white; width:64px; height:64px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:28px; text-decoration:none; box-shadow:0 6px 20px rgba(0,0,0,0.3); z-index:1000; }
 
-    /* Carrito */
-    #cart { display:none; position:fixed; bottom:120px; right:20px; background:#fff; border:2px solid #ff69b4; border-radius:15px; padding:20px; width:320px; max-height:420px; overflow:auto; box-shadow:0 6px 20px rgba(0,0,0,0.3); z-index:1001; }
-    #cart h3 { margin-top:0; }
-    #cart ul { padding-left:16px; list-style:none; }
-    .cart-actions { display:flex; justify-content:space-between; margin-top:10px; gap:8px; }
-    .btn-primary { background:#ff69b4; color:#fff; padding:8px 12px; border-radius:8px; border:none; cursor:pointer; }
-    .btn-secondary { background:#25d366; color:#fff; padding:8px 12px; border-radius:8px; border:none; cursor:pointer; }
-    .cart-open { position:fixed; bottom:25px; right:115px; background:#ff1493; color:white; width:64px; height:64px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:28px; text-decoration:none; box-shadow:0 6px 20px rgba(0,0,0,0.3); z-index:1000; }
-  </style>
-</head>
-<body>
-  <header>✨ Esther Store ✨</header>
+  </style>  
+</head>  
+<body>    <header>✨ Esther Store ✨</header>    <div class="descripcion">  
+    Tienda femenina de fundas, body splash, cremas, mallas y tops 💖<br>Accesorios coquetos y únicos para vos 🌸  
+  </div>    <!-- Carrito -->    <div id="cart">  
+    <h3>Carrito de Compras 🛒</h3>  
+    <ul id="cart-items"></ul>  
+    <p><strong>Total: $<span id="cart-total">0</span></strong></p>  
+    <div class="cart-actions">  
+      <button class="btn-primary" onclick="payWithCard()">Pagar con tarjeta</button>  
+      <button class="btn-secondary" onclick="payWithWhatsApp()">Pagar por WhatsApp</button>  
+    </div>  
+    <div style="display:flex; justify-content:space-between; margin-top:10px;">  
+      <button onclick="clearCart()" style="background:#ff69b4;color:#fff;border:none;padding:8px;border-radius:8px;cursor:pointer;">Vaciar carrito</button>  
+      <button onclick="toggleCart()" style="background:#ccc;color:#333;border:none;padding:8px;border-radius:8px;cursor:pointer;">Cerrar</button>  
+    </div>  
+  </div>    <!-- Botón abrir carrito -->  <a href="#" class="cart-open" onclick="toggleCart()">🛒</a>
 
-  <div class="descripcion">
-    Tienda femenina de fundas, body splash, cremas, mallas y tops 💖<br>Accesorios coquetos y únicos para vos 🌸
-  </div>
+  <!-- Botón WhatsApp -->  <a href="https://wa.me/1158290777" class="whatsapp-button" target="_blank">💬</a>
 
-  <!-- Carrito -->
-  <div id="cart">
-    <h3>Carrito de Compras 🛒</h3>
-    <ul id="cart-items"></ul>
-    <p><strong>Total: $<span id="cart-total">0</span></strong></p>
-    <div class="cart-actions">
-      <button class="btn-primary" onclick="payWithCard()">Pagar con tarjeta</button>
-      <button class="btn-secondary" onclick="payWithWhatsApp()">Pagar por WhatsApp</button>
-    </div>
-    <div style="display:flex; justify-content:space-between; margin-top:10px;">
-      <button onclick="clearCart()" style="background:#ff69b4;color:#fff;border:none;padding:8px;border-radius:8px;cursor:pointer;">Vaciar carrito</button>
-      <button onclick="toggleCart()" style="background:#ccc;color:#333;border:none;padding:8px;border-radius:8px;cursor:pointer;">Cerrar</button>
-    </div>
-  </div>
-
-  <!-- Botón abrir carrito -->
+  <!-- Sección: Fundas -->    <h2 class="section-title">Fundas de Celulares</h2>  
+  <div class="productos">  
+    <div class="producto">  
+      <img src="https://i.postimg.cc/7GB0kGxB/dfe0a50a7ed6d4aebbb53ec57fb00b75.jpg" alt="Funda Rhode iPhone 16 Pro Max">  
+      <h3>Funda Rhode (iPhone 16 Pro Max)</h3>  
+      <p>Precio: $50.000 ARS</p>  
+      <button onclick="addToCart('Funda Rhode',50000)">Agregar al carrito</button>  
+    </div>  
+    <div class="producto">  
+      <img src="https://i.postimg.cc/478Vg7JL" alt="Case Rhode iPhone PRO MAX">  
+      <h3>Case Rhode iPhone PRO MAX</h3>  
+      <p>Precio: $50.000 ARS</p>  
+      <button onclick="addToCart('Case Rhode PRO MAX',50000)">Agregar al carrito</button>  
+    </div>  
+    <div class="producto">  
+      <img src="https://i.postimg.cc/7bsnqJB5/de555b890fc4ee1a2fe3a0168a9fc034.jpg" alt="Auriculares P9">  
+      <h3>Auriculares P9</h3>  
+      <p>Precio: $35.000 ARS</p>  
+      <button onclick="addToCart('Auriculares P9',35000)">Agregar al carrito</button>  
+    </div>  
+  </div>    <!-- Sección: Body Splash -->    <h2 class="section-title">Body Splash</h2>  
+  <div class="productos">  
+    <div class="producto">  
+      <img src="https://i.postimg.cc/jLDQ2q9L/1760451060866.jpg" alt="Body Splash Very Berry">  
+      <h3>Body Splash "Natural Spirit" Very Berry</h3>  
+      <p>Precio: $15.000 ARS</p>  
+      <button onclick="addToCart('Body Splash Very Berry',15000)">Agregar al carrito</button>  
+    </div>  
+    <div class="producto">  
+      <h3>Body Splash "Natural Spirit" Pear Punch</h3>  
+      <p>Precio: $15.000 ARS</p>  
+      <button onclick="addToCart('Body Splash Pear Punch',15000)">Agregar al carrito</button>  
+    </div>  
+    <div class="producto">  
+      <h3>Body Splash "Natural Spirit" Summer Crush</h3>  
+      <p>Precio: $15.000 ARS</p>  
+      <button onclick="addToCart('Body Splash Summer Crush',15000)">Agregar al carrito</button>  
+    </div>  
+    <div class="producto">  
+      <img src="https://i.postimg.cc/BtYBJPht" alt="Desmaquillante Todo Moda">  
+      <h3>Desmaquillante Todo Moda</h3>  
+      <p>Precio: $15.000 ARS</p>  
+      <button onclick="addToCart('Desmaquillante Todo Moda',15000)">Agregar al carrito</button>  
+    </div>  
+  </div>    <!-- Sección: Mallas / Bikinis -->    <h2 class="section-title">Mallas / Bikinis</h2>  
+  <div class="productos">  
+    <div class="producto">  
+      <img src="https://i.postimg.cc/TLkg6LRB/79d41c4ba4ae4e63b8c07758ebddfa71.jpg" alt="Bikini Tini">  
+      <h3>Bikini Tini</h3>  
+      <p>Colores: Negro y Blanco, Azul y Fucsia, Naranja y Negro</p>  
+      <p>Talles: 1,2,3,4</p>  
+      <p>Precio: $20.000 ARS</p>  
+      <button onclick="addToCart('Bikini Tini',20000)">Agregar al carrito</button>  
+    </div>  
+    <div class="producto">  
+      <img src="https://i.postimg.cc/vgSgKJhb/932474d1fe36f854f48aa0fa1a6b1da2.jpg" alt="Bikini Nicki">  
+      <h3>Bikini Nicki</h3>  
+      <p>Color: Blanco y Negro</p>  
+      <p>Talles: 1,2,3,4</p>  
+      <p>Precio: $25.000 ARS</p>  
+      <button onclick="addToCart('Bikini Nicki',25000)">Agregar al carrito</button>  
+    </div>  
+    <div class="producto">  
+      <img src="https://i.postimg.cc/bSsbNyrf/IMG-20251013-154144.jpg" alt="Bikini Dai">  
+      <h3>Bikini Dai</h3>  
+      <p>Colores: Blanco y Negro, Azul y Verde, Naranja y Negro</p>  
+      <p>Talles: 1,2,3,4</p>  
+      <p>Precio: $20.000 ARS</p>  
+      <button onclick="addToCart('Bikini Dai',20000)">Agregar al carrito</button>  
+    </div>  
+  </div>    <!-- Sección: Tops -->    <h2 class="section-title">Tops</h2>  
+  <div class="productos">  
+    <div class="producto">  
+      <img src="https://i.postimg.cc/QHgCLb2B/IMG-20251014-140417.jpg" alt="Top Ale">  
+      <h3>Top Ale</h3>  
+      <p>Colores: Negro, Blanco y Gris</p>  
+      <p>Precio: $10.000 ARS</p>  
+      <button onclick="addToCart('Top Ale',10000)">Agregar al carrito</button>  
+    </div>  
+    <div class="producto">  
+      <img src="https://i.postimg.cc/3WmJp1J0/Top-Noel.jpg" alt="Top Noel">  
+      <h3>Top Noel</h3>  
+      <p>Colores: Negro y Blanco</p>  
+      <p>Precio: $10.000 ARS</p>  
+      <button onclick="
